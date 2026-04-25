@@ -18,7 +18,7 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('YourPet - Dashboard'),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xFF4ECDC4), // Warna toska sesuai UI mockup
         foregroundColor: Colors.white,
         actions: [
           IconButton(
@@ -52,31 +52,87 @@ class DashboardPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.pets, size: 100, color: Colors.blue),
+            // Logo icon
+            const Icon(
+              Icons.pets,
+              size: 100,
+              color: Color(0xFF4ECDC4),
+            ),
             const SizedBox(height: 20),
+            
+            // Sapaan
             Text(
               'Selamat datang,',
               style: TextStyle(fontSize: 18, color: Colors.grey[600]),
             ),
             Text(
-              user != null ? user['name'].toString() : 'User', // HAPUS '!' NYA
+              user != null ? user['name'].toString() : 'User',
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue,
+                color: Color(0xFF2C5F5D),
               ),
             ),
             const SizedBox(height: 10),
             Text(
-              user != null
-                  ? 'Email: ${user['email']}'
-                  : 'Email: -', // HAPUS '!' NYA
+              user != null ? 'Email: ${user['email']}' : 'Email: -',
               style: TextStyle(fontSize: 16, color: Colors.grey[600]),
             ),
             const SizedBox(height: 40),
+
+            // ⬇️ TOMBOL BARU: KONSULTASI DOKTER
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/doctors');
+              },
+              icon: const Icon(Icons.local_hospital),
+              label: const Text(
+                'Konsultasi Dokter',
+                style: TextStyle(fontSize: 16),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4ECDC4),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 3,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Tombol kedua (placeholder untuk fitur lain)
+            ElevatedButton.icon(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Fitur Marketplace: coming soon!'),
+                    backgroundColor: Colors.orange,
+                  ),
+                );
+              },
+              icon: const Icon(Icons.shopping_bag),
+              label: const Text(
+                'Marketplace',
+                style: TextStyle(fontSize: 16),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: const Color(0xFF4ECDC4),
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: const BorderSide(color: Color(0xFF4ECDC4)),
+                ),
+                elevation: 0,
+              ),
+            ),
+            const SizedBox(height: 40),
+
             const Text(
-              '✨ Fitur akan segera hadir! ✨',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              '✨ Fitur lain akan segera hadir! ✨',
+              style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
           ],
         ),

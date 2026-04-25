@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
+import 'providers/product_provider.dart';
 import 'views/login_page.dart';
 import 'views/dashboard_page.dart';
+import 'views/product_list_page.dart';
+import 'providers/consultation_provider.dart';
+import 'views/booking_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => ConsultationProvider()),
+      ],
       child: MaterialApp(
         title: 'YourPet',
         theme: ThemeData(primarySwatch: Colors.blue),
@@ -28,6 +36,11 @@ class MyApp extends StatelessWidget {
             print('📱 Membangun DashboardPage');
             return const DashboardPage();
           },
+          '/doctors': (context) {
+            print('📱 Membangun DoctorListPage');
+            return const DoctorListPage();
+          },
+          
         },
       ),
     );
